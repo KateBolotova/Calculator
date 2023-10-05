@@ -51,6 +51,10 @@ def hide_all_screens():
     equations_screen.pack_forget()
     integration_screen.pack_forget()
     main_screen.pack_forget()
+    matrices_1.pack_forget()
+    matrices_2.pack_forget()
+    equations_1.pack_forget()
+    equations_2.pack_forget()
 
 
 # Создаем главное окно
@@ -80,10 +84,20 @@ matrices_back_button = ttk.Button(matrices_screen, text="На главный э�
 matrices_back_button.pack()
 
 # Доп Кнопки для экрана с матрицами
-matrices_1_button = ttk.Button(matrices_screen, text="Функция 1", command=show_matrices_1, style="My.TButton")
+matrices_1_button = ttk.Button(matrices_screen, text="Test Driven Development - Сложение двух матриц 3x3",
+                               command=show_matrices_1,
+                               style="My.TButton")
 matrices_1_button.pack()
-matrices_2_button = ttk.Button(matrices_screen, text="Функция 2", command=show_matrices_2, style="My.TButton")
+matrices_2_button = ttk.Button(matrices_screen, text="Behavior Driven Development", command=show_matrices_2,
+                               style="My.TButton")
 matrices_2_button.pack()
+
+# Сумма матриц 3 на 3
+matrices_label = tk.Label(matrices_1, text="Экран со сложением матриц")
+matrices_label.pack()
+matrices_back_button = ttk.Button(matrices_1, text="На главный экран", command=show_main_screen,
+                                  style="My.TButton")
+matrices_back_button.pack()
 
 # Экран "Уравнения"
 equations_label = tk.Label(equations_screen, text="Экран с уравнениями")
