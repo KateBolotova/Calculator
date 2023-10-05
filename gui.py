@@ -10,9 +10,9 @@ def show_matrices_screen():
     matrices_screen.pack()
 
 
-def show_matrices_1():
+def show_matrix_sum():
     hide_all_screens()
-    matrices_1.pack()
+    matrix_sum.pack()
 
 
 def show_matrices_2():
@@ -51,7 +51,7 @@ def hide_all_screens():
     equations_screen.pack_forget()
     integration_screen.pack_forget()
     main_screen.pack_forget()
-    matrices_1.pack_forget()
+    matrix_sum.pack_forget()
     matrices_2.pack_forget()
     equations_1.pack_forget()
     equations_2.pack_forget()
@@ -68,7 +68,7 @@ style.configure("My.TButton", font=("Arial", 16), foreground="black", background
 
 # Создаем экраны для каждой функциональности
 matrices_screen = tk.Frame(root)
-matrices_1 = tk.Frame(root)
+matrix_sum = tk.Frame(root)
 matrices_2 = tk.Frame(root)
 equations_screen = tk.Frame(root)
 equations_1 = tk.Frame(root)
@@ -85,19 +85,46 @@ matrices_back_button.pack()
 
 # Доп Кнопки для экрана с матрицами
 matrices_1_button = ttk.Button(matrices_screen, text="Test Driven Development - Сложение двух матриц 3x3",
-                               command=show_matrices_1,
+                               command=show_matrix_sum,
                                style="My.TButton")
 matrices_1_button.pack()
 matrices_2_button = ttk.Button(matrices_screen, text="Behavior Driven Development", command=show_matrices_2,
                                style="My.TButton")
 matrices_2_button.pack()
 
-# Сумма матриц 3 на 3
-matrices_label = tk.Label(matrices_1, text="Экран со сложением матриц")
-matrices_label.pack()
-matrices_back_button = ttk.Button(matrices_1, text="На главный экран", command=show_main_screen,
-                                  style="My.TButton")
-matrices_back_button.pack()
+# Сумма матриц 3 на 3 - поле
+matrices_label = tk.Label(matrix_sum, text="Экран со сложением матриц")
+matrices_label.grid(row=0, column=0, columnspan=3)
+
+matrices_back_button = ttk.Button(matrix_sum, text="На главный экран", command=show_main_screen, style="My.TButton")
+matrices_back_button.grid(row=1, column=0, columnspan=3)
+
+matrix1_label = tk.Label(matrix_sum, text="Матрица 1:")
+matrix1_label.grid(row=2, column=0)
+
+matrix1_entries = []
+for i in range(3):
+    for j in range(3):
+        entry = tk.Entry(matrix_sum, width=5)
+        entry.grid(row=i + 3, column=j)
+        matrix1_entries.append(entry)
+
+matrix_sign = tk.Label(matrix_sum, text="+")
+matrix_sign.grid(row=6, column=0, columnspan=3)
+matrix2_label = tk.Label(matrix_sum, text="Матрица 2:")
+matrix2_label.grid(row=7, column=0)
+
+matrix2_entries = []
+for i in range(3):
+    for j in range(3):
+        entry = tk.Entry(matrix_sum, width=5)
+        entry.grid(row=i + 8, column=j)
+        matrix2_entries.append(entry)
+
+matrix2_label = tk.Label(matrix_sum, text="")
+matrix2_label.grid(row=11, column=0)
+perform_operation_button = ttk.Button(matrix_sum, text="Выполнить операцию", style="My.TButton")
+perform_operation_button.grid(row=12, column=0, columnspan=3)
 
 # Экран "Уравнения"
 equations_label = tk.Label(equations_screen, text="Экран с уравнениями")
