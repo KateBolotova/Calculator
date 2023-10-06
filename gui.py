@@ -15,9 +15,9 @@ def show_matrix_sum():
     matrix_sum.pack()
 
 
-def show_matrices_2():
+def show_matrix_det():
     hide_all_screens()
-    matrices_2.pack()
+    matrix_det.pack()
 
 
 def show_equations_screen():
@@ -52,9 +52,19 @@ def hide_all_screens():
     integration_screen.pack_forget()
     main_screen.pack_forget()
     matrix_sum.pack_forget()
-    matrices_2.pack_forget()
+    matrix_det.pack_forget()
     equations_1.pack_forget()
     equations_2.pack_forget()
+
+
+def count_det():
+    matrix_count_det = []
+    for i in range(3):
+        matrix_count_det.append([])
+        for j in range(3):
+            value = float(matrix_det_entries[i][j].get())
+            matrix_count_det[-1].append(value)
+    print(*matrix_count_det, sep='\n')
 
 
 # Создаем главное окно
@@ -69,7 +79,7 @@ style.configure("My.TButton", font=("Arial", 16), foreground="black", background
 # Создаем экраны для каждой функциональности
 matrices_screen = tk.Frame(root)
 matrix_sum = tk.Frame(root)
-matrices_2 = tk.Frame(root)
+matrix_det = tk.Frame(root)
 equations_screen = tk.Frame(root)
 equations_1 = tk.Frame(root)
 equations_2 = tk.Frame(root)
@@ -84,15 +94,16 @@ matrices_back_button = ttk.Button(matrices_screen, text="На главный э�
 matrices_back_button.pack()
 
 # Доп Кнопки для экрана с матрицами
-matrices_1_button = ttk.Button(matrices_screen, text="Test Driven Development - Сложение двух матриц 3x3",
+matrices_1_button = ttk.Button(matrices_screen, text="TDD - Сложение двух матриц 3x3",
                                command=show_matrix_sum,
                                style="My.TButton")
 matrices_1_button.pack()
-matrices_2_button = ttk.Button(matrices_screen, text="Behavior Driven Development", command=show_matrices_2,
+matrices_2_button = ttk.Button(matrices_screen, text="BDD - Нахождение определителя для "
+                                                     "матрицы 3x3", command=show_matrix_det,
                                style="My.TButton")
 matrices_2_button.pack()
 
-# Сумма матриц 3 на 3 - поле
+# Сумма матриц 3 на 3 - поле ввода
 matrices_label = tk.Label(matrix_sum, text="Экран со сложением матриц")
 matrices_label.grid(row=0, column=0, columnspan=3)
 
@@ -124,6 +135,29 @@ for i in range(3):
 matrix2_label = tk.Label(matrix_sum, text="")
 matrix2_label.grid(row=11, column=0)
 perform_operation_button = ttk.Button(matrix_sum, text="Выполнить операцию", style="My.TButton")
+perform_operation_button.grid(row=12, column=0, columnspan=3)
+
+# Определитель матрицы 3 на 3 - поле ввода
+matrices_label = tk.Label(matrix_det, text="Экран с подсчетом определителя для матрицы 3x3")
+matrices_label.grid(row=0, column=0, columnspan=3)
+
+matrices_back_button = ttk.Button(matrix_det, text="На главный экран", command=show_main_screen, style="My.TButton")
+matrices_back_button.grid(row=1, column=0, columnspan=3)
+
+matrix_det_label = tk.Label(matrix_det, text="Матрица")
+matrix_det_label.grid(row=2, column=0, columnspan=3)
+
+matrix_det_entries = []
+for i in range(3):
+    matrix_det_entries.append([])
+    for j in range(3):
+        entry = tk.Entry(matrix_det, width=5)
+        entry.grid(row=i + 3, column=j)
+        matrix_det_entries[-1].append(entry)
+
+matrix_det_label = tk.Label(matrix_det, text="")
+matrix_det_label.grid(row=11, column=0)
+perform_operation_button = ttk.Button(matrix_det, text="Выполнить операцию", command=count_det, style="My.TButton")
 perform_operation_button.grid(row=12, column=0, columnspan=3)
 
 # Экран "Уравнения"
