@@ -94,14 +94,15 @@ matrices_back_button = ttk.Button(matrices_screen, text="На главный э�
 matrices_back_button.pack()
 
 # Доп Кнопки для экрана с матрицами
-matrices_1_button = ttk.Button(matrices_screen, text="TDD - Сложение двух матриц 3x3",
-                               command=show_matrix_sum,
-                               style="My.TButton")
-matrices_1_button.pack()
-matrices_2_button = ttk.Button(matrices_screen, text="BDD - Нахождение определителя для "
+matrices_2_button = ttk.Button(matrices_screen, text="TDD - Нахождение определителя для "
                                                      "матрицы 3x3", command=show_matrix_det,
                                style="My.TButton")
 matrices_2_button.pack()
+matrices_1_button = ttk.Button(matrices_screen, text="BDD - Сложение двух матриц 3x3",
+                               command=show_matrix_sum,
+                               style="My.TButton")
+matrices_1_button.pack()
+
 
 # Сумма матриц 3 на 3 - поле ввода
 matrices_label = tk.Label(matrix_sum, text="Экран со сложением матриц")
