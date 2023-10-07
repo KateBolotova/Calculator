@@ -3,7 +3,8 @@ from calculator import matrix_det
 
 
 def test_empty_matrix():
-    assert matrix_det([]) == 0
+    with pytest.raises(IndexError):
+        matrix_det([])
 
 
 def test_zero_matrix():

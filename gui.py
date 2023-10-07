@@ -59,12 +59,16 @@ def hide_all_screens():
 
 def count_det():
     matrix_count_det = []
-    for i in range(3):
-        matrix_count_det.append([])
-        for j in range(3):
-            value = float(matrix_det_entries[i][j].get())
-            matrix_count_det[-1].append(value)
-    print(*matrix_count_det, sep='\n')
+    try:
+        for i in range(3):
+            matrix_count_det.append([])
+            for j in range(3):
+                value = float(matrix_det_entries[i][j].get())
+                matrix_count_det[-1].append(value)
+        res = calculator.matrix_det(matrix_count_det)
+        matrix_res.config(text=str(res))
+    except:
+        matrix_res.config(text='Ошибка!')
 
 
 # Создаем главное окно
@@ -102,7 +106,6 @@ matrices_1_button = ttk.Button(matrices_screen, text="BDD - Сложение д�
                                command=show_matrix_sum,
                                style="My.TButton")
 matrices_1_button.pack()
-
 
 # Сумма матриц 3 на 3 - поле ввода
 matrices_label = tk.Label(matrix_sum, text="Экран со сложением матриц")
@@ -156,10 +159,11 @@ for i in range(3):
         entry.grid(row=i + 3, column=j)
         matrix_det_entries[-1].append(entry)
 
-matrix_det_label = tk.Label(matrix_det, text="")
-matrix_det_label.grid(row=11, column=0)
+tk.Label(matrix_det, text="").grid(row=11, column=0)
 perform_operation_button = ttk.Button(matrix_det, text="Выполнить операцию", command=count_det, style="My.TButton")
 perform_operation_button.grid(row=12, column=0, columnspan=3)
+matrix_res = tk.Label(matrix_det, text="")
+matrix_res.grid(row=13, column=0, columnspan=3)
 
 # Экран "Уравнения"
 equations_label = tk.Label(equations_screen, text="Экран с уравнениями")
