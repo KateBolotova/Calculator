@@ -1,4 +1,11 @@
 def matrix_det(matrix_count_det):
+
+    # Проверка типов элементов матрицы
+    for row in matrix_count_det:
+        for element in row:
+            if not isinstance(element, (int, float)):
+                raise ValueError("Матрица должна содержать только числа")
+
     a = matrix_count_det[0][0]
     b = matrix_count_det[0][1]
     c = matrix_count_det[0][2]
