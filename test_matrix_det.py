@@ -37,3 +37,9 @@ def test_zero_det(array, expect):
 def test_ordinary_det(array, expect):
     assert matrix_det(array) == expect
 
+
+def test_det_with_letters():
+    matrix = [['a', 'b', 'c'], [1, 2, 3], [4, 5, 6]]
+
+    with pytest.raises(ValueError):
+        matrix_det(matrix)
