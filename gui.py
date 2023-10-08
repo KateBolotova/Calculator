@@ -40,6 +40,16 @@ def show_fact_screen():
     fact_screen.pack()
 
 
+def show_fact_1():
+    hide_all_screens()
+    fact_1.pack()
+
+
+def show_fact_2():
+    hide_all_screens()
+    fact_2.pack()
+
+
 def show_main_screen():
     hide_all_screens()
     main_screen.pack()
@@ -55,6 +65,8 @@ def hide_all_screens():
     matrix_det.pack_forget()
     equations_1.pack_forget()
     equations_2.pack_forget()
+    fact_1.pack_forget()
+    fact_2.pack_forget()
 
 
 def count_det():
@@ -88,6 +100,8 @@ equations_screen = tk.Frame(root)
 equations_1 = tk.Frame(root)
 equations_2 = tk.Frame(root)
 fact_screen = tk.Frame(root)
+fact_1 = tk.Frame(root)
+fact_2 = tk.Frame(root)
 main_screen = tk.Frame(root)
 
 # Экран "Матриц"
@@ -178,12 +192,18 @@ equations_1_button.pack()
 equations_2_button = ttk.Button(equations_screen, text="Функция 2", command=show_equations_2, style="My.TButton")
 equations_2_button.pack()
 
-# Экран "Интегрирование"
-fact_label = tk.Label(fact_screen, text="Экран с интегрированием")
+# Экран "(Суб)факториал"
+fact_label = tk.Label(fact_screen, text="Экран с вычислением (суб)факториала")
 fact_label.pack()
 fact_back_button = ttk.Button(fact_screen, text="На главный экран", command=show_main_screen,
                               style="My.TButton")
 fact_back_button.pack()
+
+# Доп Кнопки для экрана с (суб)факториалом
+fact_1_button = ttk.Button(fact_screen, text="Функция 1", command=show_fact_1, style="My.TButton")
+fact_1_button.pack()
+fact_2_button = ttk.Button(fact_screen, text="Функция 2", command=show_fact_2, style="My.TButton")
+fact_2_button.pack()
 
 # Главный экран
 main_label = tk.Label(main_screen, text="Главный экран")
