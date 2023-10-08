@@ -19,7 +19,6 @@ def add_matrices(m1, m2):
     for i in range(3):
         for j in range(3):
             result[i][j] = m1[i][j] + m2[i][j]
-
     return result
 
 

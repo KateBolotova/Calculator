@@ -17,6 +17,11 @@ def test_addition_negative_matrix():
     pass
 
 
+@scenario('../matrix_addition.feature', 'Сложение двух матриц 3x3, где есть буквы')
+def test_addition_with_letters():
+    pass
+
+
 @given(parsers.parse('Первая матрица {matrix_string}'), target_fixture='first_matrix')
 def first_matrix(matrix_string):
     matrix = eval(matrix_string)
@@ -33,6 +38,20 @@ def second_matrix(matrix_string):
 def add_matrices_step(first_matrix, second_matrix):
     result_matrix = add_matrices(first_matrix, second_matrix)
     return result_matrix
+
+
+@when('Я складываю их и ожидаю ошибку', target_fixture='addition_error')
+def step_when_add_matrices_with_error(first_matrix, second_matrix):
+    try:
+        add_matrices(first_matrix, second_matrix)
+    except Exception as e:
+        return e
+
+
+@then(parsers.parse('Исключение должно быть {error_type_string}'))
+def check_result(addition_error, error_type_string):
+    error_type = eval(error_type_string)
+    assert isinstance(addition_error, error_type)
 
 
 @then(parsers.parse('Результат должен быть {matrix_string}'))
