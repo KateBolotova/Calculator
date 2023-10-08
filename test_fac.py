@@ -18,3 +18,7 @@ def test_0_and_1(num, expect):
 
 def test_fac(num, expect):
     assert fac(num) == expect
+
+def test_negative():
+    with pytest.raises(ValueError):
+        fac(-2)
