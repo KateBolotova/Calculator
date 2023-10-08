@@ -35,9 +35,9 @@ def show_equations_2():
     equations_2.pack()
 
 
-def show_integration_screen():
+def show_fact_screen():
     hide_all_screens()
-    integration_screen.pack()
+    fact_screen.pack()
 
 
 def show_main_screen():
@@ -49,7 +49,7 @@ def show_main_screen():
 def hide_all_screens():
     matrices_screen.pack_forget()
     equations_screen.pack_forget()
-    integration_screen.pack_forget()
+    fact_screen.pack_forget()
     main_screen.pack_forget()
     matrix_sum.pack_forget()
     matrix_det.pack_forget()
@@ -87,7 +87,7 @@ matrix_det = tk.Frame(root)
 equations_screen = tk.Frame(root)
 equations_1 = tk.Frame(root)
 equations_2 = tk.Frame(root)
-integration_screen = tk.Frame(root)
+fact_screen = tk.Frame(root)
 main_screen = tk.Frame(root)
 
 # Экран "Матриц"
@@ -179,22 +179,22 @@ equations_2_button = ttk.Button(equations_screen, text="Функция 2", comma
 equations_2_button.pack()
 
 # Экран "Интегрирование"
-integration_label = tk.Label(integration_screen, text="Экран с интегрированием")
-integration_label.pack()
-integration_back_button = ttk.Button(integration_screen, text="На главный экран", command=show_main_screen,
-                                     style="My.TButton")
-integration_back_button.pack()
+fact_label = tk.Label(fact_screen, text="Экран с интегрированием")
+fact_label.pack()
+fact_back_button = ttk.Button(fact_screen, text="На главный экран", command=show_main_screen,
+                              style="My.TButton")
+fact_back_button.pack()
 
 # Главный экран
 main_label = tk.Label(main_screen, text="Главный экран")
 main_label.pack()
 matrices_button = ttk.Button(main_screen, text="Матрицы", command=show_matrices_screen, style="My.TButton")
 equations_button = ttk.Button(main_screen, text="Уравнения", command=show_equations_screen, style="My.TButton")
-integration_button = ttk.Button(main_screen, text="Интегрирование", command=show_integration_screen, style="My.TButton")
+fact_button = ttk.Button(main_screen, text="(Суб)факториал", command=show_fact_screen, style="My.TButton")
 
 matrices_button.pack()
 equations_button.pack()
-integration_button.pack()
+fact_button.pack()
 
 # Запускаем главное окно
 show_main_screen()  # Показываем начальный экран при запуске приложения
