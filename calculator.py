@@ -11,3 +11,6 @@ def matrix_det(matrix):
 
     det = a * e * i + b * f * g + c * d * h - c * e * g - b * d * i - a * f * h
     return det
+
+def fac(x):
+    return
