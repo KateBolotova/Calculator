@@ -15,3 +15,10 @@ def matrix_det(matrix):
 
 def add_matrices(m1, m2):
     pass
+
+
+def fac(x):
+    try:
+        int(x)
+    except ValueError:
+        raise ValueError("Вводите только числа")
