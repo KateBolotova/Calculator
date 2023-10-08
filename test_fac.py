@@ -13,3 +13,8 @@ def test_empty():
 
 def test_0_and_1(num, expect):
     assert fac(num) == expect
+
+@pytest.mark.parametrize('num, expect', [(5, 120), (2, 2)])
+
+def test_fac(num, expect):
+    assert fac(num) == expect
