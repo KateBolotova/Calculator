@@ -7,6 +7,16 @@ def test_addition():
     pass
 
 
+@scenario('../matrix_addition.feature', 'Сложение двух матриц 3x3, где одна нулевая')
+def test_addition_zero_matrix():
+    pass
+
+
+@scenario('../matrix_addition.feature', 'Сложение двух матриц 3x3, где есть отрицательные элементы')
+def test_addition_negative_matrix():
+    pass
+
+
 @given(parsers.parse('Первая матрица {matrix_string}'), target_fixture='first_matrix')
 def first_matrix(matrix_string):
     matrix = eval(matrix_string)
