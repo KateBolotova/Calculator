@@ -83,6 +83,24 @@ def count_det():
         matrix_res.config(text='Ошибка!')
 
 
+def count_sum():
+    matrix_count_sum_1 = []
+    matrix_count_sum_2 = []
+    try:
+        for i in range(3):
+            matrix_count_sum_1.append([])
+            matrix_count_sum_2.append([])
+            for j in range(3):
+                value_1 = float(matrix1_entries[i][j].get())
+                value_2 = float(matrix2_entries[i][j].get())
+                matrix_count_sum_1[-1].append(value_1)
+                matrix_count_sum_2[-1].append(value_2)
+        res = calculator.add_matrices(matrix_count_sum_1, matrix_count_sum_2)
+        matrix_sum_res.config(text=str(res))
+    except:
+        matrix_sum_res.config(text='Ошибка!')
+
+
 # Создаем главное окно
 root = tk.Tk()
 root.title("Научный калькулятор")
@@ -133,10 +151,11 @@ matrix1_label.grid(row=2, column=0)
 
 matrix1_entries = []
 for i in range(3):
+    matrix1_entries.append([])
     for j in range(3):
         entry = tk.Entry(matrix_sum, width=5)
         entry.grid(row=i + 3, column=j)
-        matrix1_entries.append(entry)
+        matrix1_entries[-1].append(entry)
 
 matrix_sign = tk.Label(matrix_sum, text="+")
 matrix_sign.grid(row=6, column=0, columnspan=3)
@@ -145,15 +164,18 @@ matrix2_label.grid(row=7, column=0)
 
 matrix2_entries = []
 for i in range(3):
+    matrix2_entries.append([])
     for j in range(3):
         entry = tk.Entry(matrix_sum, width=5)
         entry.grid(row=i + 8, column=j)
-        matrix2_entries.append(entry)
+        matrix2_entries[-1].append(entry)
 
 matrix2_label = tk.Label(matrix_sum, text="")
 matrix2_label.grid(row=11, column=0)
-perform_operation_button = ttk.Button(matrix_sum, text="Выполнить операцию", style="My.TButton")
+perform_operation_button = ttk.Button(matrix_sum, text="Выполнить операцию", command=count_sum, style="My.TButton")
 perform_operation_button.grid(row=12, column=0, columnspan=3)
+matrix_sum_res = tk.Label(matrix_sum, text="")
+matrix_sum_res.grid(row=13, column=0, columnspan=3)
 
 # Определитель матрицы 3 на 3 - поле ввода
 matrices_label = tk.Label(matrix_det, text="Экран с подсчетом определителя для матрицы 3x3")
