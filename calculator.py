@@ -34,4 +34,9 @@ def fac(x):
 
 #функция вычисления корней квадратного уравнения
 def equation_quad(coeffs):
-    return
+    roots = [0]*2
+    a, b, c = coeffs
+    D = b**2 -4*a*c
+    roots[0] = (-b + D**0.5) / (2*a)
+    roots[1] = (-b - D**0.5) / (2*a)
+    return roots
