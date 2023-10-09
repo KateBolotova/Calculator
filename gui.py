@@ -35,9 +35,19 @@ def show_equations_2():
     equations_2.pack()
 
 
-def show_integration_screen():
+def show_fact_screen():
     hide_all_screens()
-    integration_screen.pack()
+    fact_screen.pack()
+
+
+def show_fact_1():
+    hide_all_screens()
+    fact_1.pack()
+
+
+def show_fact_2():
+    hide_all_screens()
+    fact_2.pack()
 
 
 def show_main_screen():
@@ -49,12 +59,14 @@ def show_main_screen():
 def hide_all_screens():
     matrices_screen.pack_forget()
     equations_screen.pack_forget()
-    integration_screen.pack_forget()
+    fact_screen.pack_forget()
     main_screen.pack_forget()
     matrix_sum.pack_forget()
     matrix_det.pack_forget()
     equations_1.pack_forget()
     equations_2.pack_forget()
+    fact_1.pack_forget()
+    fact_2.pack_forget()
 
 
 def count_det():
@@ -69,6 +81,29 @@ def count_det():
         matrix_res.config(text=str(res))
     except:
         matrix_res.config(text='Ошибка!')
+
+
+def count_sum():
+    matrix_count_sum_1 = []
+    matrix_count_sum_2 = []
+    try:
+        for i in range(3):
+            matrix_count_sum_1.append([])
+            matrix_count_sum_2.append([])
+            for j in range(3):
+                value_1 = float(matrix1_entries[i][j].get())
+                value_2 = float(matrix2_entries[i][j].get())
+                matrix_count_sum_1[-1].append(value_1)
+                matrix_count_sum_2[-1].append(value_2)
+        res = calculator.add_matrices(matrix_count_sum_1, matrix_count_sum_2)
+        str_matrix = ''
+        for i in range(3):
+            for j in range(3):
+                str_matrix += f'{res[i][j]:8.2f}'
+            str_matrix += '\n'
+        matrix_sum_res.config(text=str_matrix)
+    except:
+        matrix_sum_res.config(text='Ошибка!')
 
 
 # Создаем главное окно
@@ -87,7 +122,9 @@ matrix_det = tk.Frame(root)
 equations_screen = tk.Frame(root)
 equations_1 = tk.Frame(root)
 equations_2 = tk.Frame(root)
-integration_screen = tk.Frame(root)
+fact_screen = tk.Frame(root)
+fact_1 = tk.Frame(root)
+fact_2 = tk.Frame(root)
 main_screen = tk.Frame(root)
 
 # Экран "Матриц"
@@ -119,10 +156,11 @@ matrix1_label.grid(row=2, column=0)
 
 matrix1_entries = []
 for i in range(3):
+    matrix1_entries.append([])
     for j in range(3):
         entry = tk.Entry(matrix_sum, width=5)
         entry.grid(row=i + 3, column=j)
-        matrix1_entries.append(entry)
+        matrix1_entries[-1].append(entry)
 
 matrix_sign = tk.Label(matrix_sum, text="+")
 matrix_sign.grid(row=6, column=0, columnspan=3)
@@ -131,15 +169,18 @@ matrix2_label.grid(row=7, column=0)
 
 matrix2_entries = []
 for i in range(3):
+    matrix2_entries.append([])
     for j in range(3):
         entry = tk.Entry(matrix_sum, width=5)
         entry.grid(row=i + 8, column=j)
-        matrix2_entries.append(entry)
+        matrix2_entries[-1].append(entry)
 
 matrix2_label = tk.Label(matrix_sum, text="")
 matrix2_label.grid(row=11, column=0)
-perform_operation_button = ttk.Button(matrix_sum, text="Выполнить операцию", style="My.TButton")
+perform_operation_button = ttk.Button(matrix_sum, text="Выполнить операцию", command=count_sum, style="My.TButton")
 perform_operation_button.grid(row=12, column=0, columnspan=3)
+matrix_sum_res = tk.Label(matrix_sum, text="")
+matrix_sum_res.grid(row=13, column=0, columnspan=3)
 
 # Определитель матрицы 3 на 3 - поле ввода
 matrices_label = tk.Label(matrix_det, text="Экран с подсчетом определителя для матрицы 3x3")
@@ -178,23 +219,29 @@ equations_1_button.pack()
 equations_2_button = ttk.Button(equations_screen, text="Функция 2", command=show_equations_2, style="My.TButton")
 equations_2_button.pack()
 
-# Экран "Интегрирование"
-integration_label = tk.Label(integration_screen, text="Экран с интегрированием")
-integration_label.pack()
-integration_back_button = ttk.Button(integration_screen, text="На главный экран", command=show_main_screen,
-                                     style="My.TButton")
-integration_back_button.pack()
+# Экран "(Суб)факториал"
+fact_label = tk.Label(fact_screen, text="Экран с вычислением (суб)факториала")
+fact_label.pack()
+fact_back_button = ttk.Button(fact_screen, text="На главный экран", command=show_main_screen,
+                              style="My.TButton")
+fact_back_button.pack()
+
+# Доп Кнопки для экрана с (суб)факториалом
+fact_1_button = ttk.Button(fact_screen, text="Функция 1", command=show_fact_1, style="My.TButton")
+fact_1_button.pack()
+fact_2_button = ttk.Button(fact_screen, text="Функция 2", command=show_fact_2, style="My.TButton")
+fact_2_button.pack()
 
 # Главный экран
 main_label = tk.Label(main_screen, text="Главный экран")
 main_label.pack()
 matrices_button = ttk.Button(main_screen, text="Матрицы", command=show_matrices_screen, style="My.TButton")
 equations_button = ttk.Button(main_screen, text="Уравнения", command=show_equations_screen, style="My.TButton")
-integration_button = ttk.Button(main_screen, text="Интегрирование", command=show_integration_screen, style="My.TButton")
+fact_button = ttk.Button(main_screen, text="(Суб)факториал", command=show_fact_screen, style="My.TButton")
 
 matrices_button.pack()
 equations_button.pack()
-integration_button.pack()
+fact_button.pack()
 
 # Запускаем главное окно
 show_main_screen()  # Показываем начальный экран при запуске приложения
