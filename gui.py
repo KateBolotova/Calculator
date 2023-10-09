@@ -96,7 +96,12 @@ def count_sum():
                 matrix_count_sum_1[-1].append(value_1)
                 matrix_count_sum_2[-1].append(value_2)
         res = calculator.add_matrices(matrix_count_sum_1, matrix_count_sum_2)
-        matrix_sum_res.config(text=str(res))
+        str_matrix = ''
+        for i in range(3):
+            for j in range(3):
+                str_matrix += f'{res[i][j]:8.2f}'
+            str_matrix += '\n'
+        matrix_sum_res.config(text=str_matrix)
     except:
         matrix_sum_res.config(text='Ошибка!')
 
