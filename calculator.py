@@ -62,3 +62,7 @@ def equation_quad(coeffs):
         del roots[1:]
         roots = None
     return roots
+
+
+def equation_irr(equation):
+    return
