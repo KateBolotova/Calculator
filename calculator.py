@@ -37,9 +37,10 @@ def equation_quad(coeffs):
     roots = [0]*2
     a, b, c = coeffs
     if a == 0:
-        del roots[1:]
-        roots = None #Нет корней, поскольку не является квадратным уравнением
-        return roots
+        raise ZeroDivisionError("Коэффициент переменной в квадрате не равен 0 в квадратичной функции")
+    for value in coeffs:
+        if not isinstance(value, (int, float)):
+            raise ValueError("Квадратичныя функция должна содержать только численные коэффициенты")
     D = b**2 -4*a*c
     if D>0:
         roots[0] = (-b + D**0.5) / (2*a)
