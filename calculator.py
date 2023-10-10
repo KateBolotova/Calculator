@@ -46,8 +46,19 @@ def subfac(x):
 def equation_quad(coeffs):
     roots = [0]*2
     a, b, c = coeffs
+    if a == 0:
+        raise ZeroDivisionError("Коэффициент переменной в квадрате не равен 0 в квадратичной функции")
+    for value in coeffs:
+        if not isinstance(value, (int, float)):
+            raise ValueError("Квадратичныя функция должна содержать только численные коэффициенты")
     D = b**2 -4*a*c
-    roots[0] = (-b + D**0.5) / (2*a)
-    roots[1] = (-b - D**0.5) / (2*a)
+    if D>0:
+        roots[0] = (-b + D**0.5) / (2*a)
+        roots[1] = (-b - D**0.5) / (2*a)
+    elif D == 0:
+        del roots[1:]
+        roots = -b / (2*a)
+    else:
+        del roots[1:]
+        roots = None
     return roots
-
