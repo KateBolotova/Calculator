@@ -22,6 +22,10 @@ def test_subfac():
 def test_big_subfac():
     pass
 
+@scenario('scenarios/subfactorial.feature', 'Вычисление субфакториала очень большого числа')
+def test_very_big_subfac():
+    pass
+
 @given(parsers.parse('Значение {x}'), target_fixture='value')
 def value(x):
     v = eval(x)
