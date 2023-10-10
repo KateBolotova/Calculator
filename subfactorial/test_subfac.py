@@ -10,6 +10,10 @@ def test_negative():
 def test_0():
     pass
 
+@scenario('scenarios/subfactorial.feature', 'Вычисление субфакториала символа')
+def test_digit():
+    pass
+
 @given(parsers.parse('Значение {x}'), target_fixture='value')
 def value(x):
     v = eval(x)
