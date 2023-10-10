@@ -18,6 +18,10 @@ def test_digit():
 def test_subfac():
     pass
 
+@scenario('scenarios/subfactorial.feature', 'Вычисление субфакториала большого числа')
+def test_big_subfac():
+    pass
+
 @given(parsers.parse('Значение {x}'), target_fixture='value')
 def value(x):
     v = eval(x)
