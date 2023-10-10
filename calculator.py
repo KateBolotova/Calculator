@@ -1,3 +1,6 @@
+import math
+
+
 def matrix_det(matrix):
     # Проверка типов элементов матрицы
     for row in matrix:
@@ -25,13 +28,20 @@ def add_matrices(m1, m2):
 
 
 def fac(x):
-    if not isinstance(x, int):
-        raise ValueError("Вводите только числа")
+    if not isinstance(x, int) or x < 0:
+        raise ValueError("Вводите только целые неотрицательные числа")
     if x == 0 or x == 1:
         return 1
     return x * fac(x - 1)
 
 
+def subfac(x):
+    if not isinstance(x, int) or x <= 0:
+        raise ValueError("Вводите только целые положительные числа")
+    res = round(fac(x)/math.e)
+    return res
+
+  
 #функция вычисления корней квадратного уравнения
 def equation_quad(coeffs):
     roots = [0]*2
