@@ -33,6 +33,6 @@ def fac(x):
 
 
 def subfac(x):
-    if x < 0:
+    if x <= 0:
         raise ValueError("Вводите только целые положительные числа")
     return
