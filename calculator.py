@@ -1,3 +1,6 @@
+import math
+
+
 def matrix_det(matrix):
     # Проверка типов элементов матрицы
     for row in matrix:
@@ -35,4 +38,5 @@ def fac(x):
 def subfac(x):
     if not isinstance(x, int) or x <= 0:
         raise ValueError("Вводите только целые положительные числа")
-    return
+    res = round(fac(x)/math.e)
+    return res
