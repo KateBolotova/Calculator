@@ -6,6 +6,10 @@ from calculator import subfac
 def test_negative():
     pass
 
+@scenario('scenarios/subfactorial.feature', 'Вычисление субфакториала крайнего числа')
+def test_0():
+    pass
+
 @given(parsers.parse('Значение {x}'), target_fixture='value')
 def value(x):
     v = eval(x)
