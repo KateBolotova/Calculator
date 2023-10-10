@@ -25,8 +25,8 @@ def add_matrices(m1, m2):
 
 
 def fac(x):
-    if not isinstance(x, int):
-        raise ValueError("Вводите только числа")
+    if not isinstance(x, int) or x < 0:
+        raise ValueError("Вводите только целые неотрицательные числа")
     if x == 0 or x == 1:
         return 1
     return x * fac(x - 1)
