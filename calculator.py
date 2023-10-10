@@ -32,5 +32,7 @@ def fac(x):
     return x * fac(x - 1)
 
 
-def subfac():
+def subfac(x):
+    if x < 0:
+        raise ValueError("Вводите только целые положительные числа")
     return
