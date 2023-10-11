@@ -105,6 +105,20 @@ def count_sum():
     except:
         matrix_sum_res.config(text='Ошибка!')
 
+def find_quad_roots():
+    try:
+        # make sure that we entered correct values
+        a_val = float(a.get())
+        b_val = float(b.get())
+        c_val = float(c.get())
+        coeffs = [a_val, b_val, c_val]
+        str_roots = str(calculator.equation_quad(coeffs))
+        equation_roots.config(text=str_roots)
+    except ValueError:
+        equation_roots.config(text="Check if you had put correct coefficients")
+    except ZeroDivisionError:
+        equation_roots.config(text="Check if you had put correct coefficients")
+
 
 # Создаем главное окно
 root = tk.Tk()
@@ -214,10 +228,39 @@ equations_back_button = ttk.Button(equations_screen, text="На главный �
 equations_back_button.pack()
 
 # Доп Кнопки для экрана с уравнениями
-equations_1_button = ttk.Button(equations_screen, text="Функция 1", command=show_equations_1, style="My.TButton")
+equations_1_button = ttk.Button(equations_screen, text="TDD - Корни квадратичной функции", command=show_equations_1, style="My.TButton")
 equations_1_button.pack()
-equations_2_button = ttk.Button(equations_screen, text="Функция 2", command=show_equations_2, style="My.TButton")
+equations_2_button = ttk.Button(equations_screen, text="BDD - Решения системы уравнений", command=show_equations_2, style="My.TButton")
 equations_2_button.pack()
+
+#Экран уравнения квадратичные - поля ввода
+equations_label = tk.Label(equations_1, text="Экран с решением квадратичных функций")
+equations_label.grid(row=0, column=0, columnspan=3)
+
+equations_back_button = ttk.Button(equations_1, text="На главный экран", command=show_main_screen, style="My.TButton")
+equations_back_button.grid(row=1, column=0, columnspan=3)
+
+equation_quad_name = tk.Label(equations_1, text="Квадратичное уравнение:")
+equation_quad_name.grid(row=3, column=0, columnspan=3)
+
+a = ttk.Entry(equations_1, width=3)
+a.grid(row=4,column=0)
+a_lab = ttk.Label(equations_1, text="x**2+").grid(row=4,column=1)
+
+b = ttk.Entry(equations_1, width=3)
+b.grid(row=4,column=2)
+b_lab = ttk.Label(equations_1, text="x+").grid(row=4, column=3)
+
+c = ttk.Entry(equations_1, width=3)
+c.grid(row=4, column=4)
+c_lab = ttk.Label(equations_1, text="= 0").grid(row=4, column=5)
+
+perform_operation_button = ttk.Button(equations_1, text="Выполнить операцию", command=find_quad_roots, style="My.TButton")
+perform_operation_button.grid(row=5, column=0, columnspan=3)
+equation_roots = tk.Label(equations_1, text="")
+equation_roots.grid(row=13, column=0, columnspan=3)
+
+#Экран система уравнений - поля ввода
 
 # Экран "(Суб)факториал"
 fact_label = tk.Label(fact_screen, text="Экран с вычислением (суб)факториала")
