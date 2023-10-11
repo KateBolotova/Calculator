@@ -1,6 +1,5 @@
 from pytest_bdd import given, when, then, scenario, parsers
 from calculator import equation_system
-from sympy import SympifyError
 
 
 @scenario('../equation_system.feature', 'Вычисление корней системы уравнений c тремя функциями')
