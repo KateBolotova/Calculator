@@ -235,30 +235,30 @@ equations_2_button.pack()
 
 #Экран уравнения квадратичные - поля ввода
 equations_label = tk.Label(equations_1, text="Экран с решением квадратичных функций")
-equations_label.grid(row=0, column=0, columnspan=3)
+equations_label.grid(row=0, column=0, columnspan=5)
 
 equations_back_button = ttk.Button(equations_1, text="На главный экран", command=show_main_screen, style="My.TButton")
-equations_back_button.grid(row=1, column=0, columnspan=3)
+equations_back_button.grid(row=1, column=0, columnspan=5)
 
 equation_quad_name = tk.Label(equations_1, text="Квадратичное уравнение:")
-equation_quad_name.grid(row=3, column=0, columnspan=3)
+equation_quad_name.grid(row=3, column=0, columnspan=5)
 
 a = ttk.Entry(equations_1, width=3)
 a.grid(row=4,column=0)
-a_lab = ttk.Label(equations_1, text="x**2+").grid(row=4,column=1)
+a_lab = ttk.Label(equations_1, text="x**2 + ").grid(row=4,column=1)
 
 b = ttk.Entry(equations_1, width=3)
 b.grid(row=4,column=2)
-b_lab = ttk.Label(equations_1, text="x+").grid(row=4, column=3)
+b_lab = ttk.Label(equations_1, text="x + ").grid(row=4, column=3)
 
 c = ttk.Entry(equations_1, width=3)
 c.grid(row=4, column=4)
-c_lab = ttk.Label(equations_1, text="= 0").grid(row=4, column=5)
+c_lab = ttk.Label(equations_1, text=" = 0").grid(row=4, column=5)
 
 perform_operation_button = ttk.Button(equations_1, text="Выполнить операцию", command=find_quad_roots, style="My.TButton")
-perform_operation_button.grid(row=5, column=0, columnspan=3)
+perform_operation_button.grid(row=5, column=0, columnspan=5)
 equation_roots = tk.Label(equations_1, text="")
-equation_roots.grid(row=13, column=0, columnspan=3)
+equation_roots.grid(row=13, column=0, columnspan=5)
 
 #Экран система уравнений - поля ввода
 
