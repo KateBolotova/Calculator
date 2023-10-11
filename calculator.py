@@ -65,13 +65,5 @@ def equation_quad(coeffs):
     return roots
 
 
-def equation_system(equations):
-    x, y = symbols('x y')
-
-    equations = [Eq(sympify(eq), 0) for eq in equations]
-
-    solutions = solve(equations, (x, y))
-
-    solution_dict = {str(var): val for var, val in solutions.items()}
-
-    return solution_dict
+def equation_system():
+    return
