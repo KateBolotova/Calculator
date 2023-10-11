@@ -16,7 +16,7 @@ def test_simple_quad(coeff, roots):
     ([1, 2, 1], -1),
     ([2, 4, 2], -1)
 ])
-def test_simple_quad(coeff, roots):
+def test_simple_quad_neg(coeff, roots):
     assert equation_quad(coeff) == roots
 
 #S2 Тесты на неполные квадраты, ноль, отсутствие корней
