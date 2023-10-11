@@ -1,5 +1,6 @@
 from pytest_bdd import given, when, then, scenario, parsers
 from calculator import equation_irr
+from sympy import SympifyError
 
 
 @scenario('../equation_irrational.feature', 'Вычисление корней системы уравнений')
@@ -17,11 +18,14 @@ def test_system_x0():
     pass
 
 
-@scenario('../equation_irrational.feature', 'Вычисление корней системы уравнений, когда в одном уравнении есть параметр')
+@scenario('../equation_irrational.feature',
+          'Вычисление корней системы уравнений, когда в одном уравнении есть буквенный символ')
 def test_system_a():
     pass
 
-@scenario('../equation_irrational.feature', 'Вычисление корней системы уравнений, когда в одном уравнении есть иные символы')
+
+@scenario('../equation_irrational.feature',
+          'Вычисление корней системы уравнений, когда в одном уравнении есть иные символы')
 def test_system_error():
     pass
 
@@ -45,7 +49,7 @@ def solve_eq(first_eq, second_eq):
     return roots
 
 
-@when('Я пытаюсь найти решение этого уравнения и ожидаю ошибку', target_fixture='syntax_error')
+@when('Я пытаюсь найти решение этого уравнения и ожидаю ошибку', target_fixture='equation_error')
 def solve_eq_error(first_eq, second_eq):
     eqs = [first_eq, second_eq]
     try:
@@ -55,9 +59,9 @@ def solve_eq_error(first_eq, second_eq):
 
 
 @then(parsers.parse('Исключение должно быть {error_type_string}'))
-def check_result(syntax_error, error_type_string):
+def check_result(equation_error, error_type_string):
     error_type = eval(error_type_string)
-    assert isinstance(syntax_error, error_type)
+    assert isinstance(equation_error, error_type)
 
 
 @then(parsers.parse('Результат должен быть {roots_str}'))
