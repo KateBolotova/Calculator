@@ -8,13 +8,13 @@ def test_system():
 
 @given(parsers.parse('Левая часть уравнений {eq_string}'), target_fixture='left_part')
 def left_part(eq_string):
-    equation_matrix = eq_string
+    equation_matrix = eval(eq_string)
     return equation_matrix
 
 
 @given(parsers.parse('Правая часть уравнений {eq_string}'), target_fixture='right_part')
 def right_part(eq_string):
-    equation_matrix = eq_string
+    equation_matrix = eval(eq_string)
     return equation_matrix
 
 
@@ -22,4 +22,9 @@ def right_part(eq_string):
 def solve_eq(left_part, right_part):
     roots = equation_system(left_part, right_part)
     return roots
+
+@then(parsers.parse('Результат должен быть {roots_str}'))
+def check_result(found_roots, roots_str):
+    roots = eval(roots_str)
+    assert found_roots == roots
 
