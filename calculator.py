@@ -38,6 +38,8 @@ def fac(x):
 def subfac(x):
     if not isinstance(x, int) or x <= 0:
         raise ValueError("Вводите только целые положительные числа")
+    if x > 18:
+        raise ValueError("Вводите числа в диапазоне [1; 18]")
     res = round(fac(x)/math.e)
     return res
 
