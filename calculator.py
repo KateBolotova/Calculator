@@ -67,13 +67,33 @@ def equation_quad(coeffs):
     return roots
 
 
-def equation_system(equations):
-    x, y = symbols('x y')
+def equation_system(A, b):
+    n = len(b)
 
-    equations = [Eq(sympify(eq), 0) for eq in equations]
+    matrix_A = A
+    matrix_b = b
 
-    solutions = solve(equations, (x, y))
+    for a in matrix_A:
+        for b1 in a:
+            if not isinstance(b1, (int, float)):
+                raise TypeError("Квадратичныя функция должна содержать только численные коэффициенты")
 
-    solution_dict = {str(var): val for var, val in solutions.items()}
+    for i in range(n):
+        for j in range(i + 1, n):
+            if matrix_A[i][i] == 0:
+                return None
+            factor = matrix_A[j][i] / matrix_A[i][i]
+            for col in range(i, n):
+                matrix_A[j][col] -= factor * matrix_A[i][col]
+            matrix_b[j] -= factor * matrix_b[i]
 
-    return solution_dict
+    x = [0] * n
+    for i in range(n - 1, -1, -1):
+        x[i] = matrix_b[i]
+        for j in range(i + 1, n):
+            x[i] -= matrix_A[i][j] * x[j]
+        if matrix_A[i][i] == 0:
+            return None
+        x[i] /= matrix_A[i][i]
+
+    return x
