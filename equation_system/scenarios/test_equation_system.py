@@ -6,6 +6,18 @@ from calculator import equation_system
 def test_system():
     pass
 
+@scenario('../equation_system.feature', 'Вычисление корней системы уравнений c тремя функциями (2)')
+def test_system2():
+    pass
+
+@scenario('../equation_system.feature', 'Вычисление корней системы уравнений c двумя функциями')
+def test_system_2eq():
+    pass
+
+@scenario('../equation_system.feature', 'Вычисление корней системы уравнений c одной функцией')
+def test_system_1eq():
+    pass
+
 @given(parsers.parse('Левая часть уравнений {eq_string}'), target_fixture='left_part')
 def left_part(eq_string):
     equation_matrix = eval(eq_string)
