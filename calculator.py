@@ -1,4 +1,5 @@
 import math
+from sympy import symbols, Eq, solve, sympify
 
 
 def matrix_det(matrix):
@@ -64,3 +65,15 @@ def equation_quad(coeffs):
         del roots[1:]
         roots = None
     return roots
+
+
+def equation_system(equations):
+    x, y = symbols('x y')
+
+    equations = [Eq(sympify(eq), 0) for eq in equations]
+
+    solutions = solve(equations, (x, y))
+
+    solution_dict = {str(var): val for var, val in solutions.items()}
+
+    return solution_dict
