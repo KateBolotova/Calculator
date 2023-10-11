@@ -66,7 +66,7 @@ def equation_quad(coeffs):
 
 
 def equation_system(A, b):
-    n = 3
+    n = len(b)
 
     matrix_A = A
     matrix_b = b
