@@ -65,5 +65,24 @@ def equation_quad(coeffs):
     return roots
 
 
-def equation_system():
-    return
+def equation_system(A, b):
+    n = 3
+
+    matrix_A = A
+    matrix_b = b
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            factor = matrix_A[j][i] / matrix_A[i][i]
+            for col in range(i, n):
+                matrix_A[j][col] -= factor * matrix_A[i][col]
+            matrix_b[j] -= factor * matrix_b[i]
+
+    x = [0] * n
+    for i in range(n - 1, -1, -1):
+        x[i] = matrix_b[i]
+        for j in range(i + 1, n):
+            x[i] -= matrix_A[i][j] * x[j]
+        x[i] /= matrix_A[i][i]
+
+    return x
