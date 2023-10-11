@@ -75,7 +75,7 @@ def equation_system(A, b):
     for a in matrix_A:
         for b1 in a:
             if not isinstance(b1, (int, float)):
-                raise TypeError("Квадратичныя функция должна содержать только численные коэффициенты")
+                raise ValueError("Система уравнений должна содержать только численные коэффициенты")
 
     for i in range(n):
         for j in range(i + 1, n):

@@ -115,30 +115,28 @@ def find_quad_roots():
         str_roots = str(calculator.equation_quad(coeffs))
         equation_roots.config(text=str_roots)
     except ValueError:
-        equation_roots.config(text="Check if you had put correct coefficients")
+        equation_roots.config(text="Проверьте, что ввели численные значения")
     except ZeroDivisionError:
-        equation_roots.config(text="Check if you had put correct coefficients")
+        equation_roots.config(text="Уравнение не имеет решений")
 
 def find_system_roots():
-    A = []
-    b = []
     try:
+        A = []
+        b = []
         for i in range(3):
             equation = []
-            for j in range(4):  # Assuming a 4x4 matrix plus one column for constants
-                equation.append(float(matrix_entries[i][j].get()))
+            for j in range(4):
+                equation.append(matrix_entries[i][j].get())
             A.append(equation[:-1])
             b.append(equation[-1])
 
         solutions = calculator.equation_system(A, b)
-
-        # Display the solutions in a label
-        equation_roots_sys.config(text=f"Solutions: {solutions}")
+        if solutions is None:
+            equation_roots_sys.config(text="Решений нет")
+        else:
+            equation_roots_sys.config(text=f"Решение: {solutions}")
     except ValueError:
-        equation_roots.config(text="Check if you had put correct coefficients")
-    except ZeroDivisionError:
-        equation_roots.config(text="Check if you had put correct coefficients")
-
+        equation_roots.config(text="Проверьте, что ввели численные значения")
 
 
 def count_fac():
@@ -162,7 +160,7 @@ def count_subfac():
 # Создаем главное окно
 root = tk.Tk()
 root.title("Научный калькулятор")
-root.geometry('600x600')
+root.geometry('800x300')
 
 # Стиль
 style = ttk.Style()
@@ -306,7 +304,7 @@ equations_label.grid(row=0, column=0, columnspan=7)
 equations_back_button = ttk.Button(equations_2, text="На главный экран", command=show_main_screen, style="My.TButton")
 equations_back_button.grid(row=1, column=0, columnspan=7)
 
-equation_quad_name = tk.Label(equations_2, text="Система уравнений:")
+equation_quad_name = tk.Label(equations_2, text="Система уравнений (вписать данные в порядке коэффициентов a, b, c, d и к чему уравнение приравнено:")
 equation_quad_name.grid(row=3, column=0, columnspan=7)
 
 matrix_entries = []
@@ -318,7 +316,7 @@ for i in range(3):
     for j in range(4):
         entry = tk.Entry(equations_2)
         entry.grid(row=i+4, column=j+4)
-        equation_label = ttk.Label(equations_2, text=f"x{j+1}").grid(row=i + 4, column=j+5)
+        equation_label = ttk.Label(equations_2).grid(row=i + 4, column=j+5)
         equation_entry.append(entry)
 
     matrix_entries.append(equation_entry)
@@ -326,7 +324,7 @@ for i in range(3):
 perform_operation_button = ttk.Button(equations_2, text="Выполнить операцию", command=find_system_roots, style="My.TButton")
 perform_operation_button.grid(row=7, column=0, columnspan=7)
 equation_roots_sys = tk.Label(equations_2, text="")
-equation_roots_sys.grid(row=8, column=0, columnspan=5)
+equation_roots_sys.grid(row=8, column=0, columnspan=7)
 
 # Экран "(Суб)факториал"
 fact_label = tk.Label(fact_screen, text="Экран с вычислением (суб)факториала")
