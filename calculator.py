@@ -1,5 +1,4 @@
 import math
-from sympy import symbols, Eq, solve, sympify
 
 
 def matrix_det(matrix):
@@ -39,26 +38,28 @@ def fac(x):
 def subfac(x):
     if not isinstance(x, int) or x <= 0:
         raise ValueError("Вводите только целые положительные числа")
-    res = round(fac(x)/math.e)
+    if x > 18:
+        raise ValueError("Вводите числа в диапазоне [1; 18]")
+    res = round(fac(x) / math.e)
     return res
 
-  
-#функция вычисления корней квадратного уравнения
+
+# функция вычисления корней квадратного уравнения
 def equation_quad(coeffs):
-    roots = [0]*2
+    roots = [0] * 2
     a, b, c = coeffs
     if a == 0:
         raise ZeroDivisionError("Коэффициент переменной в квадрате не равен 0 в квадратичной функции")
     for value in coeffs:
         if not isinstance(value, (int, float)):
             raise ValueError("Квадратичныя функция должна содержать только численные коэффициенты")
-    D = b**2 -4*a*c
-    if D>0:
-        roots[0] = (-b + D**0.5) / (2*a)
-        roots[1] = (-b - D**0.5) / (2*a)
+    D = b ** 2 - 4 * a * c
+    if D > 0:
+        roots[0] = (-b + D ** 0.5) / (2 * a)
+        roots[1] = (-b - D ** 0.5) / (2 * a)
     elif D == 0:
         del roots[1:]
-        roots = -b / (2*a)
+        roots = -b / (2 * a)
     else:
         del roots[1:]
         roots = None

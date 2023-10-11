@@ -105,6 +105,7 @@ def count_sum():
     except:
         matrix_sum_res.config(text='Ошибка!')
 
+
 def find_quad_roots():
     try:
         # make sure that we entered correct values
@@ -118,6 +119,24 @@ def find_quad_roots():
         equation_roots.config(text="Check if you had put correct coefficients")
     except ZeroDivisionError:
         equation_roots.config(text="Check if you had put correct coefficients")
+
+
+def count_fac():
+    try:
+        res = calculator.fac(int(x_fac.get()))
+        fac_res.config(text=f'{res}')
+    except ValueError:
+        fac_res.config(text='Вводите только целые неотрицательные числа')
+    except TypeError:
+        fac_res.config(text='Введите число!')
+
+        
+def count_subfac():
+    try:
+        res = calculator.subfac(int(x_subfac.get()))
+        subfac_res.config(text=f'{res}')
+    except:
+        subfac_res.config(text='Вводите только целые положительные числа в диапазоне [1; 18]')
 
 
 # Создаем главное окно
@@ -301,10 +320,42 @@ fact_back_button = ttk.Button(fact_screen, text="На главный экран"
 fact_back_button.pack()
 
 # Доп Кнопки для экрана с (суб)факториалом
-fact_1_button = ttk.Button(fact_screen, text="Функция 1", command=show_fact_1, style="My.TButton")
+fact_1_button = ttk.Button(fact_screen, text="TDD Факториал", command=show_fact_1, style="My.TButton")
 fact_1_button.pack()
-fact_2_button = ttk.Button(fact_screen, text="Функция 2", command=show_fact_2, style="My.TButton")
+fact_2_button = ttk.Button(fact_screen, text="BDD Субфакториал", command=show_fact_2, style="My.TButton")
 fact_2_button.pack()
+
+# Экран Факториала
+fac_label = tk.Label(fact_1, text="Экран факториала")
+fac_back_button = ttk.Button(fact_1, text="На главный экран", command=show_main_screen, style="My.TButton")
+fac_label.pack()
+fac_back_button.pack()
+
+fac_l = tk.Label(fact_1, text="Введите целое неотрицательное число")
+x_fac = tk.Entry(fact_1, width=30)
+fac_l.pack()
+x_fac.pack()
+
+fac_button = ttk.Button(fact_1, text="Рассчитать!", command=count_fac, style="My.TButton")
+fac_button.pack()
+fac_res = tk.Label(fact_1, text="")
+fac_res.pack()
+
+# Экран Субфакториала
+subfac_label = tk.Label(fact_2, text="Экран субфакториала")
+subfac_back_button = ttk.Button(fact_2, text="На главный экран", command=show_main_screen, style="My.TButton")
+subfac_label.pack()
+subfac_back_button.pack()
+
+subfac_l = tk.Label(fact_2, text="Введите целое положительное число < 19")
+x_subfac = tk.Entry(fact_2, width=30)
+subfac_l.pack()
+x_subfac.pack()
+
+subfac_button = ttk.Button(fact_2, text="Рассчитать!", command=count_subfac, style="My.TButton")
+subfac_button.pack()
+subfac_res = tk.Label(fact_2, text="")
+subfac_res.pack()
 
 # Главный экран
 main_label = tk.Label(main_screen, text="Главный экран")
