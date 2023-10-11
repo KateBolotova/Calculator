@@ -65,7 +65,7 @@ def equation_quad(coeffs):
     return roots
 
 
-def equation_irr(equations):
+def equation_system(equations):
     x, y = symbols('x y')
 
     equations = [Eq(sympify(eq), 0) for eq in equations]
