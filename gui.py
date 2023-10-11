@@ -108,7 +108,6 @@ def count_sum():
 
 def find_quad_roots():
     try:
-        # make sure that we entered correct values
         a_val = float(a.get())
         b_val = float(b.get())
         c_val = float(c.get())
@@ -119,6 +118,27 @@ def find_quad_roots():
         equation_roots.config(text="Check if you had put correct coefficients")
     except ZeroDivisionError:
         equation_roots.config(text="Check if you had put correct coefficients")
+
+def find_system_roots():
+    A = []
+    b = []
+    try:
+        for i in range(3):
+            equation = []
+            for j in range(4):  # Assuming a 4x4 matrix plus one column for constants
+                equation.append(float(matrix_entries[i][j].get()))
+            A.append(equation[:-1])
+            b.append(equation[-1])
+
+        solutions = calculator.equation_system(A, b)
+
+        # Display the solutions in a label
+        equation_roots_sys.config(text=f"Solutions: {solutions}")
+    except ValueError:
+        equation_roots.config(text="Check if you had put correct coefficients")
+    except ZeroDivisionError:
+        equation_roots.config(text="Check if you had put correct coefficients")
+
 
 
 def count_fac():
@@ -289,28 +309,24 @@ equations_back_button.grid(row=1, column=0, columnspan=7)
 equation_quad_name = tk.Label(equations_2, text="Система уравнений:")
 equation_quad_name.grid(row=3, column=0, columnspan=7)
 
+matrix_entries = []
+for i in range(3):
+    equation_label = tk.Label(equations_2, text=f"Уравнение {i + 1}:")
+    equation_label.grid(row=i+4, column=0)
 
-for n in range(3):
-    a = ttk.Entry(equations_2, width=3)
-    a.grid(row=n+4,column=0)
-    a_lab = ttk.Label(equations_2, text="x1 + ").grid(row=n+4,column=1)
+    equation_entry = []
+    for j in range(4):
+        entry = tk.Entry(equations_2)
+        entry.grid(row=i+4, column=j+4)
+        equation_label = ttk.Label(equations_2, text=f"x{j+1}").grid(row=i + 4, column=j+5)
+        equation_entry.append(entry)
 
-    b = ttk.Entry(equations_2, width=3)
-    b.grid(row=n+4,column=2)
-    b_lab = ttk.Label(equations_2, text="x2 + ").grid(row=n+4, column=3)
+    matrix_entries.append(equation_entry)
 
-    c = ttk.Entry(equations_2, width=3)
-    c.grid(row=n+4, column=4)
-    c_lab = ttk.Label(equations_2, text=" x3 = ").grid(row=n+4, column=5)
-
-    d = ttk.Entry(equations_2, width=3)
-    d.grid(row=n + 4, column=6)
-    d_lab = ttk.Label(equations_2, text="").grid(row=n + 4, column=7)
-
-perform_operation_button = ttk.Button(equations_2, text="Выполнить операцию", command=find_quad_roots, style="My.TButton")
+perform_operation_button = ttk.Button(equations_2, text="Выполнить операцию", command=find_system_roots, style="My.TButton")
 perform_operation_button.grid(row=7, column=0, columnspan=7)
-equation_roots = tk.Label(equations_2, text="")
-equation_roots.grid(row=13, column=0, columnspan=5)
+equation_roots_sys = tk.Label(equations_2, text="")
+equation_roots_sys.grid(row=8, column=0, columnspan=5)
 
 # Экран "(Суб)факториал"
 fact_label = tk.Label(fact_screen, text="Экран с вычислением (суб)факториала")
