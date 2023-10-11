@@ -126,7 +126,7 @@ def find_system_roots():
         for i in range(3):
             equation = []
             for j in range(4):
-                equation.append(matrix_entries[i][j].get())
+                equation.append(float(matrix_entries[i][j].get()))
             A.append(equation[:-1])
             b.append(equation[-1])
 
@@ -135,8 +135,8 @@ def find_system_roots():
             equation_roots_sys.config(text="Решений нет")
         else:
             equation_roots_sys.config(text=f"Решение: {solutions}")
-    except ValueError:
-        equation_roots.config(text="Проверьте, что ввели численные значения")
+    except:
+        equation_roots_sys.config(text="Проверьте, что ввели численные значения")
 
 
 def count_fac():
